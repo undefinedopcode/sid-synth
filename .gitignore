@@ -1,0 +1,5 @@
+sid-synth
+render
+-h
+*.wav
+*.mid
