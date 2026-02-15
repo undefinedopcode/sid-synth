@@ -4,6 +4,8 @@ A Commodore 64 SID chip synthesizer that plays standard MIDI files, written in G
 
 Emulates the MOS 6581/8580 Sound Interface Device at the oscillator, envelope, and filter level. 12 SID chips (36 voices) with LRU voice allocation, a full General MIDI patch set mapped to SID waveforms, and sample-accurate MIDI playback.
 
+![SID Synth TUI](assets/screenshot.png)
+
 ## Building
 
 ```
