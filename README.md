@@ -90,7 +90,7 @@ sound/       Instrument definitions
 ui/          Terminal interface
   model.go     BubbleTea model, input handling, playback control
   view.go      Lipgloss layout, voice grid, channel display, progress bar
-  braille.go   Braille character waveform renderer for oscilloscope
+  plot.go      Braille character waveform renderer for oscilloscope
 
 cmd/render/  Offline WAV renderer
 main.go      TUI entry point
