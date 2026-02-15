@@ -1,5 +1,5 @@
-sid-synth
-render
--h
+/sid-synth
+/render
+/-h
 *.wav
 *.mid
