@@ -1,0 +1,48 @@
+steps:
+  - name: Go Build
+    type: go-build
+    docker_image: 'golang:1.25'
+    command: |-
+      git config --global --add safe.directory /workspace
+      apt-get update && apt-get install -y libasound2-dev
+      make build
+    artifacts:
+      - ./sid-synth
+  - name: Test
+    type: custom
+    docker_image: 'alpine:latest'
+    command: |-
+      echo "Hello $FOO_ACCESS_ID"
+      exit 2
+    depends_on:
+      - Go Build
+    credentials:
+      - FOO_ACCESS_ID
+    success_codes:
+      - 0
+      - 2
+  - name: Approve
+    type: block
+    command: Should we deploy?
+    depends_on:
+      - Test
+    condition: steps.Test.exit_code == 2
+  - name: Apply
+    type: custom
+    docker_image: 'alpine:latest'
+    command: ls -l
+    depends_on:
+      - Test
+      - Approve
+  - name: NoChanges
+    type: noop
+    command: ''
+    depends_on:
+      - Test
+    condition: steps.Test.exit_code == 0
+  - name: End
+    type: noop
+    command: ''
+    depends_on:
+      - Apply
+      - NoChanges
