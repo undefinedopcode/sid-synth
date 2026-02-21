@@ -32,7 +32,6 @@ steps:
     docker_image: 'alpine:latest'
     command: ls -l
     depends_on:
-      - Test
       - Approve
   - name: NoChanges
     type: noop
